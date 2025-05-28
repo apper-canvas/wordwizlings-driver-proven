@@ -3,12 +3,10 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-surface-50 text-surface-900 font-sans;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
