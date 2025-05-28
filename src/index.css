@@ -1,0 +1,120 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .game-button {
+    @apply bg-gradient-to-r from-primary to-primary-light text-white font-bold py-4 px-8 rounded-3xl shadow-bubble transform transition-all duration-200 hover:scale-105 active:scale-95 text-xl;
+  }
+  
+  .letter-tile {
+    @apply bg-white border-4 border-secondary rounded-2xl shadow-card text-2xl font-bold text-gray-800 w-16 h-16 flex items-center justify-center cursor-pointer transform transition-all duration-200 hover:scale-110 active:scale-95;
+  }
+  
+  .letter-tile-dragging {
+    @apply scale-110 shadow-bubble z-50;
+  }
+  
+  .drop-zone {
+    @apply border-4 border-dashed border-secondary rounded-2xl w-16 h-16 flex items-center justify-center transition-all duration-200;
+  }
+  
+  .drop-zone-active {
+    @apply border-accent bg-accent bg-opacity-20 scale-105;
+  }
+  
+  .grade-card {
+    @apply bg-white rounded-3xl p-6 shadow-bubble transform transition-all duration-300 hover:scale-105 cursor-pointer border-4;
+  }
+  
+  .puzzle-card {
+    @apply bg-white rounded-2xl p-4 shadow-card transform transition-all duration-200 hover:scale-105 cursor-pointer;
+  }
+  
+  .success-animation {
+    animation: successPulse 0.6s ease-in-out;
+  }
+  
+  .error-shake {
+    animation: errorShake 0.5s ease-in-out;
+  }
+  
+  .star-bounce {
+    animation: starBounce 1s ease-in-out infinite;
+  }
+}
+
+@keyframes successPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes starBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-dark;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible {
+  @apply ring-4 ring-accent ring-opacity-50 outline-none;
+}
+
+/* Prevent text selection on game elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+  .letter-tile {
+    @apply w-20 h-20 text-3xl;
+  }
+  
+  .drop-zone {
+    @apply w-20 h-20;
+  }
+}
